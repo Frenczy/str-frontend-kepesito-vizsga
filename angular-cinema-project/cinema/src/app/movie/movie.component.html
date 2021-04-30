@@ -1,19 +1,30 @@
-<section class="container-md">
-  <form #mForm="ngForm">
-    <div class="form-group">
-      <label class="text-warning" for="title">Movie Title:</label>
+<section class="container-md" *ngIf="movie">
+  <form #mForm="ngForm" (ngSubmit)="saveMovie(movie)">
+    <div class="form-group" >
+      <label class="text-warning mt-3" for="title">Movie Title:</label>
       <input id="title" type="text" class="form-control"
-        required pattern="" name="title" [(ngModel)]="movie.title">
+        required pattern="^[A-Űa-ű ]{5,25}$" name="title" [(ngModel)]="movie.title">
     </div>
     <div class="row">
       <div class="form-group col-6">
-
+        <div class="form-group">
+          <label class="text-warning" for="year">Release year:</label>
+          <input id="year" type="text" class="form-control"
+            required pattern="^(199\d|200\d|2010)$" name="year" [(ngModel)]="movie.year">
+        </div>
       </div>
       <div class="form-group col-6">
-
+        <div class="form-group">
+          <label class="text-warning" for="category">Category:</label>
+          <select name="category" [(ngModel)]="cat"  class="form-control" [value]="categoryList[0]">
+            <option *ngFor="let c of categoryList" required pattern="^(Drama|Action|Fantasy)$">{{c}}</option>
+          </select>
+        </div>
       </div>
     </div>
-
+    <button type="submit" [disabled]="mForm.invalid" class="btn btn-warning">Save</button><br>
+    <small class="text-danger">Fill all fields to save</small>
+    
   </form>
 
 

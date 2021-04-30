@@ -12,6 +12,9 @@ export class MovieComponent implements OnInit {
   @ViewChild('mForm', { static: true }) movieForm: FormGroup;
   movie: Movie = new Movie();
 
+  categoryList:string[]=["Choose Category", "Drama", "Action", "Fantasy"]
+  cat:string="Choose Category"
+
   constructor() {
 
   }
@@ -19,8 +22,8 @@ export class MovieComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveMovie(): any {
-    return {};
+  saveMovie(movie:Movie): void {
+    console.log(movie); 
   }
 
 }
